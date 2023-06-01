@@ -1,0 +1,56 @@
+body {
+  background-image: url("https://vastphotos.com/files/uploads/photos/10284/milky-way-panorama-m.jpg?v=20220712073521");
+  background-size: cover;
+}
+
+.container {
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 400px;
+  height: 60vh;
+  color: rgb(252, 247, 247);
+  font-family: "Roboto", sans-serif;
+}
+.data {
+  margin-top: auto;
+  background-color: #0a0909; /* Set the background color */
+  padding: 10px; /* Add padding to create space around the text */
+  /* border-radius: 4px; Round the corners of the box */
+  width: 200px; /* Set the width of the box */
+}
+
+input {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  width: 100%;
+  height: 1.5rem;
+  padding: 1rem;
+  background: rgb(217, 142, 56);
+  color: rgb(250, 250, 250);
+  outline-style: none;
+}
+
+input::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  width: 100%;
+  height: 10%;
+  min-height: 10%;
+  color: #d36614;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 3px 1px -2px #b15708, 0 2px 2px 0 #b15708, 0 1px 5px 0 #b15708;
+}
+button:active {
+  box-shadow: 0 4px 2px -3px #ccc, 0 4px 5px 1px #ccc, 0 2px 7px 1px #ccc;
+}
