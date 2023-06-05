@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WeatherCard from "../weatherCard/WeatherCard";
+import { getDayofTheWeek } from "../../utils/helperFunction";
 import "./weatherApp.style.css";
 
 const WeatherApp = () => {
@@ -11,15 +12,22 @@ const WeatherApp = () => {
   const [wind, setWind] = useState(0);
   const [city, setCity] = useState("");
   const [searchCity, setSearchCity] = useState("");
+  const [todaysDate, setTodaysDate] = useState(new Date());
 
-  const onClickHandler = async () => {
-    console.log("searched city", searchCity);
+  const getSearchCity = async () => {
+    const todaysDate = new Date();
+
+    console.log("todays date", todaysDate);
+
     try {
-      //   const response = await axios.get(
-      //     "https://api.openweathermap.org/data/2.5/weather?lat=42.09&lon=-87.99&units=imperial&appid=355cf3bff397cfe55bf144d10da9b2d8");
+      // const response = await axios.get(
+      //   "https://api.openweathermap.org/data/2.5/weather?lat=42.09&lon=-87.99&units=imperial&appid=355cf3bff397cfe55bf144d10da9b2d8"
+      // );
 
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=imperial&appid=355cf3bff397cfe55bf144d10da9b2d8`
+        `https://api.openweathermap.org/data/2.5/weather?q=
+        ${searchCity ? searchCity : "Chicago"}
+        &units=imperial&appid=355cf3bff397cfe55bf144d10da9b2d8`
       );
 
       const { data } = response;
@@ -40,10 +48,21 @@ const WeatherApp = () => {
     }
   };
 
+  useEffect(() => {
+    getSearchCity();
+  }, []);
+
+  // side effect
+
+  const onClickHandler = async () => {
+    console.log("searched city", searchCity);
+  };
+
   const onChangeHandler = (e) => {
     setSearchCity(e.target.value);
     // console.log("e value", e.target.value);
   };
+
   return (
     <div className="container">
       <input
@@ -51,7 +70,11 @@ const WeatherApp = () => {
         onChange={onChangeHandler}
         value={searchCity}
       />
-      <button onClick={onClickHandler}>Get the weather</button>
+      <button onClick={onChangeHandler}>Get the weather</button>
+      <p>time: {todaysDate.toLocaleTimeString()}</p>
+      <p>date: {todaysDate.toLocaleDateString()}</p>
+      <p>date and time {todaysDate.toLocaleString()}</p>
+      <p>Happy {getDayofTheWeek(new Date("2001/10/08"))} </p>
       <div className="data">
         <WeatherCard
           city={city}
